@@ -6,7 +6,7 @@ var config = {
 
     hosts: {
         // XMPP domain.
-        domain: 'jitsi-meet.example.com',
+        domain: 'enter.potkal.live',
 
         // When using authentication, domain for guest users.
         // anonymousdomain: 'guest.example.com',
@@ -24,11 +24,11 @@ var config = {
         // focus: 'focus.jitsi-meet.example.com',
 
         // XMPP MUC domain. FIXME: use XEP-0030 to discover it.
-        muc: 'conference.jitsi-meet.example.com'
+        muc: 'conference.enter.potkal.live'
     },
 
     // BOSH URL. FIXME: use XEP-0156 to discover it.
-    bosh: '//jitsi-meet.example.com/http-bind',
+    bosh: '//enter.potkal.live/http-bind',
 
     // Websocket URL
     // websocket: 'wss://jitsi-meet.example.com/xmpp-websocket',
@@ -203,7 +203,7 @@ var config = {
 
     // Transcription (in interface_config,
     // subtitles and buttons can be configured)
-    // transcribingEnabled: false,
+    transcribingEnabled: true,
 
     // Enables automatic turning on captions when recording is started
     // autoCaptionOnRecord: false,
@@ -253,7 +253,7 @@ var config = {
     // useNicks: false,
 
     // Require users to always specify a display name.
-    // requireDisplayName: true,
+    requireDisplayName: true,
 
     // Whether to use a welcome page or not. In case it's false a random room
     // will be joined when no room is specified.
@@ -267,7 +267,7 @@ var config = {
     // disable1On1Mode: false,
 
     // Default language for the user interface.
-    // defaultLanguage: 'en',
+    defaultLanguage: 'tr',
 
     // If true all users without a token will be considered guests and all users
     // with token will be considered non-guests. Only guests will be allowed to
@@ -281,12 +281,12 @@ var config = {
     // lockRoomGuestEnabled: false,
 
     // When enabled the password used for locking a room is restricted to up to the number of digits specified
-    // roomPasswordNumberOfDigits: 10,
-    // default: roomPasswordNumberOfDigits: false,
+    roomPasswordNumberOfDigits: 6,
 
+    // default: roomPasswordNumberOfDigits: false,
     // Message to show the users. Example: 'The service will be down for
     // maintenance at 01:00 AM GMT,
-    // noticeMessage: '',
+    noticeMessage: 'Work in progress.',
 
     // Enables calendar integration, depends on googleApiApplicationClientID
     // and microsoftApiApplicationClientID
@@ -450,22 +450,15 @@ var config = {
     // A property to disable the right click context menu for localVideo
     // the menu has option to flip the locally seen video for local presentations
     // disableLocalVideoFlip: false,
-
-    // Deployment specific URLs.
-    // deploymentUrls: {
-    //    // If specified a 'Help' button will be displayed in the overflow menu with a link to the specified URL for
-    //    // user documentation.
-    //    userDocumentationURL: 'https://docs.example.com/video-meetings.html',
-    //    // If specified a 'Download our apps' button will be displayed in the overflow menu with a link
-    //    // to the specified URL for an app download page.
-    //    downloadAppsUrl: 'https://docs.example.com/our-apps.html'
-    // },
+    deploymentUrls: {
+        userDocumentationURL: 'https://docs.example.com/video-meetings.html',
+        downloadAppsUrl: 'https://docs.example.com/our-apps.html'
+    },
 
     // Options related to the remote participant menu.
-    // remoteVideoMenu: {
-    //     // If set to true the 'Kick out' button will be disabled.
-    //     disableKick: true
-    // },
+    remoteVideoMenu: {
+        disableKick: true
+    },
 
     // If set to true all muting operations of remote participants will be disabled.
     // disableRemoteMute: true,
