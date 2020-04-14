@@ -45,11 +45,11 @@ var config = {
 
     testing: {
         // Enables experimental simulcast support on Firefox.
-        enableFirefoxSimulcast: false,
+        enableFirefoxSimulcast: false
 
         // P2P test mode disables automatic switching to P2P when there are 2
         // participants in the conference.
-        p2pTestMode: false
+        // p2pTestMode: false
 
         // Enables the test specific features consumed by jitsi-meet-torture
         // testMode: false
@@ -334,7 +334,7 @@ var config = {
         // through the JVB and use the peer to peer connection instead. When a
         // 3rd participant joins the conference will be moved back to the JVB
         // connection.
-        enabled: true,
+        // enabled: true,
 
         // Use XEP-0215 to fetch STUN and TURN servers.
         // useStunTurn: true,
@@ -344,7 +344,7 @@ var config = {
 
             // { urls: 'stun:jitsi-meet.example.com:4446' },
             { urls: 'stun:meet-jit-si-turnrelay.jitsi.net:443' }
-        ],
+        ]
 
         // Sets the ICE transport policy for the p2p connection. At the time
         // of this writing the list of possible values are 'all' and 'relay',
@@ -356,7 +356,7 @@ var config = {
 
         // If set to true, it will prefer to use H.264 for P2P calls (if H.264
         // is supported).
-        preferH264: true
+        // preferH264: true
 
         // If set to true, disable H.264 video codec by stripping it out of the
         // SDP.
