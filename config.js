@@ -9,7 +9,7 @@ var config = {
         domain: 'enter.potkal.live',
 
         // When using authentication, domain for guest users.
-        // anonymousdomain: 'guest.example.com',
+        anonymousdomain: 'guest.enter.potkal.live',
 
         // Domain for authenticated users. Defaults to <domain>.
         // authdomain: 'jitsi-meet.example.com',
@@ -372,7 +372,7 @@ var config = {
         // googleAnalyticsTrackingId: 'your-tracking-id-UA-123456-1'
 
         // The Amplitude APP Key:
-        // amplitudeAPPKey: '<APP_KEY>'
+        amplitudeAPPKey: 'e0ae9097c45095cd3d903947c2eb8e86'
 
         // Array of script URLs to load as lib-jitsi-meet "analytics handlers".
         // scriptURLs: [
