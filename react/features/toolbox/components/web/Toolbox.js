@@ -39,6 +39,7 @@ import {
     beginAddPeople,
     InfoDialogButton,
     isAddPeopleEnabled,
+    CustomInviteDialog,
     isDialOutEnabled
 } from '../../../invite';
 import { openKeyboardShortcutsDialog } from '../../../keyboard-shortcuts';
@@ -250,6 +251,7 @@ class Toolbox extends Component<Props, State> {
         this._onToolbarToggleSharedVideo = this._onToolbarToggleSharedVideo.bind(this);
         this._onToolbarOpenLocalRecordingInfoDialog = this._onToolbarOpenLocalRecordingInfoDialog.bind(this);
         this._onShortcutToggleTileView = this._onShortcutToggleTileView.bind(this);
+        this._onToolbarOpenCustomInvite = this._onToolbarOpenCustomInvite.bind(this);
 
         this.state = {
             windowWidth: window.innerWidth
@@ -695,6 +697,20 @@ class Toolbox extends Component<Props, State> {
     _onToolbarOpenInvite() {
         sendAnalytics(createToolbarEvent('invite'));
         this.props.dispatch(beginAddPeople());
+    }
+
+    _onToolbarOpenCustomInvite: () => void;
+
+    /**
+     * Creates an analytics toolbar event and dispatches an action for opening
+     * the modal for inviting people directly into the conference.
+     *
+     * @private
+     * @returns {void}
+     */
+    _onToolbarOpenCustomInvite() {
+        sendAnalytics(createToolbarEvent('invite-custom'));
+        this.props.dispatch(openDialog(CustomInviteDialog));
     }
 
     _onToolbarOpenKeyboardShortcuts: () => void;
@@ -1274,16 +1290,22 @@ class Toolbox extends Component<Props, State> {
                     }
                     { buttonsRight.indexOf('tileview') !== -1
                         && <TileViewButton /> }
-                    { buttonsRight.indexOf('invite') !== -1
+                    {/* { buttonsRight.indexOf('invite') !== -1
                         && <ToolbarButton
                             accessibilityLabel =
                                 { t('toolbar.accessibilityLabel.invite') }
                             icon = { IconInvite }
                             onClick = { this._onToolbarOpenInvite }
-                            tooltip = { t('toolbar.invite') } /> }
-                    {
-                        buttonsRight.indexOf('info') !== -1
-                            && <InfoDialogButton />
+                            tooltip = { t('toolbar.invite') } /> } */}
+                    { buttonsRight.indexOf('invite') !== -1
+                        && <ToolbarButton
+                            accessibilityLabel = { t('toolbar.accessibilityLabel.invite') }
+                            icon = { IconInvite }
+                            onClick = { this._onToolbarOpenCustomInvite }
+                            tooltip = { t('toolbar.invite') } />
+                    }
+                    { buttonsRight.indexOf('info') !== -1
+                        && <InfoDialogButton />
                     }
                     { buttonsRight.indexOf('overflowmenu') !== -1
                         && <OverflowMenuButton
@@ -1294,7 +1316,8 @@ class Toolbox extends Component<Props, State> {
                                 className = 'overflow-menu'>
                                 { overflowMenuContent }
                             </ul>
-                        </OverflowMenuButton> }
+                        </OverflowMenuButton>
+                    }
                 </div>
             </div>);
     }
