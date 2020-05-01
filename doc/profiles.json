@@ -1,0 +1,63 @@
+// User Profile with Invitations and no sign-up for Hosting
+{
+	"id":"1213-asdaf241-asfqwr234-1234",
+	"msisdn":"+905359879336",
+	"canHost" : false,
+	"rooms": null,
+	"invitations" : [
+		{
+			"from":"+31234567789",
+			"name":"Gayet structured bir datamiz mi var?",
+			"at":"2020-05-01T20:00:00Z"
+		},
+		{
+			"from":"+31234569000",
+			"name":"Gayet Pic bir datamiz var",
+			"at":"2020-05-02T18:30:00Z"
+		}
+	],
+	"preferences":{
+		"startVideoMuted":true,
+		"someOtherPreference":false,
+		"someStringPreference":"tr-TR"
+	}
+},
+
+//User Profile with Rooms
+{
+	"id":"1213-asdaf241-asfqwr234-1234",
+	"msisdn":"+905359879336",
+	"canHost" : false,
+	"rooms": [
+		{
+			"name":"someName",
+			"heaadline":"Work in progress, come on in",
+			"url":"https://enter.potkal.live/someName",
+			"locked" : true,
+			"passkey":"12345",
+			"anonymousMeetingUrl":false,
+			"logoUrl":"https://someurl/mybusinesslogo-16x16.png",
+			"background":{
+				"color":"#123456",
+				"img":""
+			}
+		}
+	],
+	"invitations" : [
+		{
+			"from":"+31234567789",
+			"name":"Gayet structured bir datamiz mi var?",
+			"at":"2020-05-01T20:00:00Z"
+		},
+		{
+			"from":"+31234569000",
+			"name":"Gayet Pic bir datamiz var",
+			"at":"2020-05-02T18:30:00Z"
+		}
+	],
+	"preferences":{
+		"startVideoMuted":true,
+		"someOtherPreference":false,
+		"someStringPreference":"tr-TR"
+	}
+}

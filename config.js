@@ -37,7 +37,7 @@ var config = {
     clientNode: 'http://jitsi.org/jitsimeet',
 
     // The real JID of focus participant - can be overridden here
-    // focusUserJid: 'focus@auth.jitsi-meet.example.com',
+    focusUserJid: 'focus@auth.enter.potkal.live',
 
 
     // Testing / experimental features.
@@ -49,7 +49,7 @@ var config = {
 
         // P2P test mode disables automatic switching to P2P when there are 2
         // participants in the conference.
-        // p2pTestMode: false
+        // p2pTestMode: true
 
         // Enables the test specific features consumed by jitsi-meet-torture
         // testMode: false
@@ -90,7 +90,7 @@ var config = {
 
     // Start the conference in audio only mode (no video is being received nor
     // sent).
-    // startAudioOnly: false,
+    startAudioOnly: false,
 
     // Every participant after the Nth will start audio muted.
     // startAudioMuted: 10,
@@ -161,7 +161,7 @@ var config = {
     desktopSharingChromeSources: [ 'screen', 'window', 'tab' ],
 
     // Required version of Chrome extension
-    desktopSharingChromeMinExtVersion: '0.1',
+    // desktopSharingChromeMinExtVersion: '0.1',
 
     // Whether desktop sharing should be disabled on Firefox.
     // desktopSharingFirefoxDisabled: false,
@@ -177,36 +177,41 @@ var config = {
 
     // Recording
 
+    fileRecordingsEnabled: true,
+
     // Whether to enable file recording or not.
-    // fileRecordingsEnabled: false,
+
     // Enable the dropbox integration.
-    // dropbox: {
-    //     appKey: '<APP_KEY>' // Specify your app key here.
-    //     // A URL to redirect the user to, after authenticating
-    //     // by default uses:
-    //     // 'https://jitsi-meet.example.com/static/oauth.html'
-    //     redirectURI:
-    //          'https://jitsi-meet.example.com/subfolder/static/oauth.html'
-    // },
+    dropbox: {
+        appKey: '2z8sotgpb04yl7h',
+
+        // A URL to redirect the user to, after authenticating
+        // by default uses:
+        // 'https://jitsi-meet.example.com/static/oauth.html'
+        redirectURI:
+         'https://enter.potkal.live/static/oauth.html'
+    },
+
     // When integrations like dropbox are enabled only that will be shown,
     // by enabling fileRecordingsServiceEnabled, we show both the integrations
     // and the generic recording service (its configuration and storage type
     // depends on jibri configuration)
-    // fileRecordingsServiceEnabled: false,
+    // fileRecordingsServiceEnabled: true,
+
     // Whether to show the possibility to share file recording with other people
     // (e.g. meeting participants), based on the actual implementation
     // on the backend.
-    // fileRecordingsServiceSharingEnabled: false,
+    // fileRecordingsServiceSharingEnabled: true,
 
     // Whether to enable live streaming or not.
-    // liveStreamingEnabled: false,
+    liveStreamingEnabled: true,
 
     // Transcription (in interface_config,
     // subtitles and buttons can be configured)
-    transcribingEnabled: true,
+    transcribingEnabled: false,
 
     // Enables automatic turning on captions when recording is started
-    // autoCaptionOnRecord: false,
+    autoCaptionOnRecord: false,
 
     // Misc
 
@@ -234,7 +239,7 @@ var config = {
     // minParticipants: 2,
 
     // Use XEP-0215 to fetch STUN and TURN servers.
-    // useStunTurn: true,
+    useStunTurn: true,
 
     // Enable IPv6 support.
     // useIPv6: true,
@@ -261,7 +266,7 @@ var config = {
 
     // Enabling the close page will ignore the welcome page redirection when
     // a call is hangup.
-    // enableClosePage: false,
+    // enableClosePage: true,
 
     // Disable hiding of remote thumbnails when in a 1-on-1 conference call.
     // disable1On1Mode: false,
@@ -278,7 +283,7 @@ var config = {
     // enableFeaturesBasedOnToken: false,
 
     // Enable lock room for all moderators, even when userRolesBasedOnToken is enabled and participants are guests.
-    // lockRoomGuestEnabled: false,
+    lockRoomGuestEnabled: false,
 
     // When enabled the password used for locking a room is restricted to up to the number of digits specified
     roomPasswordNumberOfDigits: 6,
@@ -286,11 +291,11 @@ var config = {
     // default: roomPasswordNumberOfDigits: false,
     // Message to show the users. Example: 'The service will be down for
     // maintenance at 01:00 AM GMT,
-    noticeMessage: 'Work in progress.',
+    noticeMessage: 'Potkal Live Beta',
 
     // Enables calendar integration, depends on googleApiApplicationClientID
     // and microsoftApiApplicationClientID
-    // enableCalendarIntegration: false,
+    // enableCalendarIntegration: true,
 
     // Stats
     //
@@ -299,7 +304,7 @@ var config = {
     // This can be useful for debugging purposes (post-processing/analysis of
     // the webrtc stats) as it is done in the jitsi-meet-torture bandwidth
     // estimation tests.
-    // gatherStats: false,
+    gatherStats: false,
 
     // The interval at which PeerConnection.getStats() is called. Defaults to 10000
     // pcStatsInterval: 10000,
@@ -310,10 +315,10 @@ var config = {
     // callStatsSecret: '',
 
     // enables sending participants display name to callstats
-    // enableDisplayNameInStats: false,
+    enableDisplayNameInStats: true,
 
     // enables sending participants email if available to callstats and other analytics
-    // enableEmailInStats: false,
+    enableEmailInStats: true,
 
     // Privacy
     //
@@ -321,7 +326,7 @@ var config = {
     // If third party requests are disabled, no other server will be contacted.
     // This means avatars will be locally generated and callstats integration
     // will not function.
-    // disableThirdPartyRequests: false,
+    disableThirdPartyRequests: false,
 
 
     // Peer-To-Peer mode: used (if enabled) when there are just 2 participants.
@@ -334,10 +339,10 @@ var config = {
         // through the JVB and use the peer to peer connection instead. When a
         // 3rd participant joins the conference will be moved back to the JVB
         // connection.
-        // enabled: true,
+        enabled: true,
 
         // Use XEP-0215 to fetch STUN and TURN servers.
-        // useStunTurn: true,
+        useStunTurn: true,
 
         // The STUN servers that will be used in the peer to peer connections
         stunServers: [
@@ -369,16 +374,16 @@ var config = {
 
     analytics: {
         // The Google Analytics Tracking ID:
-        // googleAnalyticsTrackingId: 'your-tracking-id-UA-123456-1'
+        googleAnalyticsTrackingId: 'UA-163735409-1',
 
         // The Amplitude APP Key:
-        amplitudeAPPKey: 'e0ae9097c45095cd3d903947c2eb8e86'
+        amplitudeAPPKey: 'e0ae9097c45095cd3d903947c2eb8e86',
 
         // Array of script URLs to load as lib-jitsi-meet "analytics handlers".
-        // scriptURLs: [
-        //      "libs/analytics-ga.min.js", // google-analytics
+        scriptURLs: [
+            'libs/analytics-ga.min.js' // google-analytics
         //      "https://example.com/my-custom-analytics.js"
-        // ],
+        ]
     },
 
     // Information about the jitsi-meet instance we are connecting to, including
@@ -394,10 +399,10 @@ var config = {
 
     // Information for the chrome extension banner
     // chromeExtensionBanner: {
-    //     // The chrome extension to be installed address
+    // //     // The chrome extension to be installed address
     //     url: 'https://chrome.google.com/webstore/detail/jitsi-meetings/kglhbbefdnlheedjiejgomgmfplipfeb',
 
-    //     // Extensions info which allows checking if they are installed or not
+    //     //     // Extensions info which allows checking if they are installed or not
     //     chromeExtensionsInfo: [
     //         {
     //             id: 'kglhbbefdnlheedjiejgomgmfplipfeb',
@@ -409,20 +414,22 @@ var config = {
     // Local Recording
     //
 
-    // localRecording: {
+    localRecording: {
     // Enables local recording.
     // Additionally, 'localrecording' (all lowercase) needs to be added to
     // TOOLBAR_BUTTONS in interface_config.js for the Local Recording
     // button to show up on the toolbar.
     //
-    //     enabled: true,
-    //
+    //    enabled: true,
 
-    // The recording format, can be one of 'ogg', 'flac' or 'wav'.
-    //     format: 'flac'
-    //
+        //
 
-    // },
+        // The recording format, can be one of 'ogg', 'flac' or 'wav'.
+        //    format: 'flac'
+
+        //
+
+    },
 
     // Options related to end-to-end (participant to participant) ping.
     // e2eping: {
@@ -450,15 +457,15 @@ var config = {
     // A property to disable the right click context menu for localVideo
     // the menu has option to flip the locally seen video for local presentations
     // disableLocalVideoFlip: false,
-    deploymentUrls: {
-        userDocumentationURL: 'https://docs.example.com/video-meetings.html',
-        downloadAppsUrl: 'https://docs.example.com/our-apps.html'
-    },
+    // deploymentUrls: {
+    //     userDocumentationURL: 'https://docs.example.com/video-meetings.html',
+    //     downloadAppsUrl: 'https://docs.example.com/our-apps.html'
+    // },
 
-    // Options related to the remote participant menu.
-    remoteVideoMenu: {
-        disableKick: true
-    },
+    // // Options related to the remote participant menu.
+    // remoteVideoMenu: {
+    //     disableKick: true
+    // },
 
     // If set to true all muting operations of remote participants will be disabled.
     // disableRemoteMute: true,

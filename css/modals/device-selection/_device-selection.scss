@@ -20,7 +20,7 @@
 
         /* device-selector-trigger stylings attempt to mimic AtlasKit button */
         .device-selector-trigger {
-            background-color: #0E1624;
+            background-color: #0052CC;
             border: 1px solid #455166;
             border-radius: 5px;
             display: flex;
@@ -43,6 +43,7 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             width: 100%;
+            color:white;
         }
     }
 

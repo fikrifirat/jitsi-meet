@@ -3,7 +3,7 @@
 var interfaceConfig = {
     // TO FIX: this needs to be handled from SASS variables. There are some
     // methods allowing to use variables both in css and js.
-    DEFAULT_BACKGROUND: '#474747',
+    DEFAULT_BACKGROUND: '#FFC857',
 
     /**
      * Whether or not the blurred video background for large video should be
@@ -14,10 +14,10 @@ var interfaceConfig = {
     INITIAL_TOOLBAR_TIMEOUT: 20000,
     TOOLBAR_TIMEOUT: 4000,
     TOOLBAR_ALWAYS_VISIBLE: false,
-    DEFAULT_REMOTE_DISPLAY_NAME: 'Fellow Jitster',
+    DEFAULT_REMOTE_DISPLAY_NAME: 'Participant',
     DEFAULT_LOCAL_DISPLAY_NAME: 'me',
     SHOW_JITSI_WATERMARK: true,
-    JITSI_WATERMARK_LINK: 'https://jitsi.org',
+    JITSI_WATERMARK_LINK: 'https://enter.potkal.live',
 
     // if watermark is disabled by default, it can be shown only for guests
     SHOW_WATERMARK_FOR_GUESTS: true,
@@ -27,12 +27,12 @@ var interfaceConfig = {
     SHOW_DEEP_LINKING_IMAGE: false,
     GENERATE_ROOMNAMES_ON_WELCOME_PAGE: true,
     DISPLAY_WELCOME_PAGE_CONTENT: true,
-    DISPLAY_WELCOME_PAGE_TOOLBAR_ADDITIONAL_CONTENT: false,
-    APP_NAME: 'Jitsi Meet',
-    NATIVE_APP_NAME: 'Jitsi Meet',
-    PROVIDER_NAME: 'Jitsi',
+    DISPLAY_WELCOME_PAGE_TOOLBAR_ADDITIONAL_CONTENT: true,
+    APP_NAME: 'Potkal Live',
+    NATIVE_APP_NAME: 'Potkal Live',
+    PROVIDER_NAME: 'Potkal',
     LANG_DETECTION: true, // Allow i18n to detect the system language
-    INVITATION_POWERED_BY: true,
+    INVITATION_POWERED_BY: false,
 
     /**
      * If we should show authentication block in profile
@@ -73,11 +73,11 @@ var interfaceConfig = {
     VERTICAL_FILMSTRIP: true,
 
     // A html text to be shown to guests on the close page, false disables it
-    CLOSE_PAGE_GUEST_HINT: false,
-    SHOW_PROMOTIONAL_CLOSE_PAGE: false,
-    RANDOM_AVATAR_URL_PREFIX: false,
-    RANDOM_AVATAR_URL_SUFFIX: false,
-    FILM_STRIP_MAX_HEIGHT: 120,
+    CLOSE_PAGE_GUEST_HINT: true,
+    SHOW_PROMOTIONAL_CLOSE_PAGE: true,
+    RANDOM_AVATAR_URL_PREFIX: true,
+    RANDOM_AVATAR_URL_SUFFIX: true,
+    FILM_STRIP_MAX_HEIGHT: 100,
 
     // Enables feedback star animation.
     ENABLE_FEEDBACK_ANIMATION: false,
@@ -99,8 +99,8 @@ var interfaceConfig = {
      * @type {boolean}
      */
     DISABLE_RINGING: false,
-    AUDIO_LEVEL_PRIMARY_COLOR: 'rgba(255,255,255,0.4)',
-    AUDIO_LEVEL_SECONDARY_COLOR: 'rgba(255,255,255,0.2)',
+    AUDIO_LEVEL_PRIMARY_COLOR: 'rgba(17,218,167,0.4)',
+    AUDIO_LEVEL_SECONDARY_COLOR: 'rgba(17,218,167,0.2)',
     POLICY_LOGO: null,
     LOCAL_THUMBNAIL_RATIO: 16 / 9, // 16:9
     REMOTE_THUMBNAIL_RATIO: 1, // 1:1
@@ -114,7 +114,7 @@ var interfaceConfig = {
      *
      * @type {boolean}
      */
-    MOBILE_APP_PROMO: true,
+    MOBILE_APP_PROMO: false,
 
     /**
      * Maximum coeficient of the ratio of the large video to the visible area
@@ -147,7 +147,7 @@ var interfaceConfig = {
      *
      * @type {number}
      */
-    CONNECTION_INDICATOR_AUTO_HIDE_TIMEOUT: 5000,
+    CONNECTION_INDICATOR_AUTO_HIDE_TIMEOUT: 3000,
 
     /**
      * If true, hides the connection indicators completely.
@@ -206,7 +206,7 @@ var interfaceConfig = {
     * If this is set to false, the banner will not be rendered at all. If set to true, the check for extension(s)
     * being already installed is done before rendering.
     */
-    SHOW_CHROME_EXTENSION_BANNER: false
+    SHOW_CHROME_EXTENSION_BANNER: false,
 
     /**
      * When enabled, the kick participant button will not be presented for users without a JWT
@@ -244,7 +244,7 @@ var interfaceConfig = {
      * explicitly dismissed through a user action. The value is how long, in
      * milliseconds, those notifications should remain displayed.
      */
-    // ENFORCE_NOTIFICATION_AUTO_DISMISS_TIMEOUT: 15000,
+    ENFORCE_NOTIFICATION_AUTO_DISMISS_TIMEOUT: 5000
 
     // List of undocumented settings
     /**
