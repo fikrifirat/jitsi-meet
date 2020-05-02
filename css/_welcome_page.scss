@@ -55,7 +55,7 @@ body.welcome-page {
             align-self: $welcomePageHeaderTextDescriptionAlignSelf;
         }
 
-        #enter_room {
+        .meeting-form-container {
             display: flex;
             align-items: center;
             max-width: calc(100% - 40px);

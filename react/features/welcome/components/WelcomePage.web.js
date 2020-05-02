@@ -12,6 +12,7 @@ import { SettingsButton, SETTINGS_TABS } from '../../settings';
 
 import { AbstractWelcomePage, _mapStateToProps } from './AbstractWelcomePage';
 import Tabs from './Tabs';
+import { setUserInfo } from '../../base/user';
 
 /**
  * The pattern used to validate room name.
@@ -107,6 +108,8 @@ class WelcomePage extends AbstractWelcomePage {
         this._setAdditionalToolbarContentRef
             = this._setAdditionalToolbarContentRef.bind(this);
         this._onTabSelected = this._onTabSelected.bind(this);
+        this._onPhoneChange = this._onPhoneChange.bind(this);
+        this._onUserFormSubmit = this._onUserFormSubmit.bind(this);
     }
 
     /**
@@ -157,11 +160,10 @@ class WelcomePage extends AbstractWelcomePage {
      * @returns {ReactElement|null}
      */
     render() {
-        const { t } = this.props;
+        const { t, _user } = this.props;
         const { APP_NAME } = interfaceConfig;
         const showAdditionalContent = this._shouldShowAdditionalContent();
         const showAdditionalToolbarContent = this._shouldShowAdditionalToolbarContent();
-        const showResponsiveText = this._shouldShowResponsiveText();
 
         return (
             <div
@@ -192,36 +194,7 @@ class WelcomePage extends AbstractWelcomePage {
                                 { app: APP_NAME }) }
                         </p>
                     </div>
-                    <div id = 'enter_room'>
-                        <div className = 'enter-room-input-container'>
-                            <div className = 'enter-room-title'>
-                                { t('welcomepage.enterRoomTitle') }
-                            </div>
-                            <form onSubmit = { this._onFormSubmit }>
-                                <input
-                                    autoFocus = { true }
-                                    className = 'enter-room-input'
-                                    id = 'enter_room_field'
-                                    onChange = { this._onRoomChange }
-                                    pattern = { ROOM_NAME_VALIDATE_PATTERN_STR }
-                                    placeholder = { this.state.roomPlaceholder }
-                                    ref = { this._setRoomInputRef }
-                                    title = { t('welcomepage.roomNameAllowedChars') }
-                                    type = 'text'
-                                    value = { this.state.room } />
-                            </form>
-                        </div>
-                        <div
-                            className = 'welcome-page-button'
-                            id = 'enter_room_button'
-                            onClick = { this._onFormSubmit }>
-                            {
-                                showResponsiveText
-                                    ? t('welcomepage.goSmall')
-                                    : t('welcomepage.go')
-                            }
-                        </div>
-                    </div>
+                    { _user && _user.verified ? this._renderRoomForm() : this._renderUserForm() }
                     { this._renderTabs() }
                 </div>
                 { showAdditionalContent
@@ -260,6 +233,57 @@ class WelcomePage extends AbstractWelcomePage {
      */
     _onRoomChange(event) {
         super._onRoomChange(event.target.value);
+    }
+
+    /**
+     * Overrides the super to account for the differences in the argument types
+     * provided by HTML and React Native text inputs.
+     *
+     * @inheritdoc
+     * @override
+     * @param {Event} event - The (HTML) Event which details the change such as
+     * the EventTarget.
+     * @protected
+     */
+    _onPhoneChange(event) {
+        super._onPhoneChange(event.target.value);
+    }
+
+    /**
+    * Fetch user details.
+    *
+    * @param {Event} event - The HTML Event which details the form submission.
+    * @private
+    * @returns {void}
+    */
+    _onUserFormSubmit(event) {
+        event.preventDefault();
+        const { phone } = this.state;
+
+        if (!phone) {
+            return this.setState({
+                formMessage: 'You must enter a phone number'
+            });
+        }
+
+        fetch(`https://steady-thunder-274016.ey.r.appspot.com/user?phone=${phone}`, {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json'
+            }
+        })
+        .then(res => {
+            if (res.status === 200) {
+                res.json()
+                    .then(user => this.props.dispatch(setUserInfo(user)))
+                    .catch(err => console.log('err:', err));
+            } else {
+                this.setState({
+                    formMessage: 'We couldn\'t find an account with this number'
+                });
+            }
+        })
+        .catch(err => console.log('err:', err));
     }
 
     /**
@@ -312,6 +336,91 @@ class WelcomePage extends AbstractWelcomePage {
                 onSelect = { this._onTabSelected }
                 selected = { this.state.selectedTab }
                 tabs = { tabs } />);
+    }
+
+    /**
+    * Renders entering room name form.
+    *
+    * @returns {ReactElement}
+    */
+    _renderRoomForm() {
+        const { t } = this.props;
+        const showResponsiveText = this._shouldShowResponsiveText();
+
+        return (
+            <div
+                className = 'meeting-form-container'
+                id = 'enter_room'>
+                <div className = 'enter-room-input-container'>
+                    <div className = 'enter-room-title'>
+                        {t('welcomepage.enterRoomTitle')}
+                    </div>
+                    <form onSubmit = { this._onFormSubmit }>
+                        <input
+                            autoFocus = { true }
+                            className = 'enter-room-input'
+                            id = 'enter_room_field'
+                            onChange = { this._onRoomChange }
+                            pattern = { ROOM_NAME_VALIDATE_PATTERN_STR }
+                            placeholder = { this.state.roomPlaceholder }
+                            ref = { this._setRoomInputRef }
+                            title = { t('welcomepage.roomNameAllowedChars') }
+                            type = 'text'
+                            value = { this.state.room } />
+                    </form>
+                </div>
+                <div
+                    className = 'welcome-page-button'
+                    id = 'enter_room_button'
+                    onClick = { this._onFormSubmit }>
+                    {
+                        showResponsiveText
+                            ? t('welcomepage.goSmall')
+                            : t('welcomepage.go')
+                    }
+                </div>
+            </div>
+        );
+    }
+
+
+    /**
+    * Renders user login/signup form.
+    *
+    * @returns {ReactElement}
+    */
+    _renderUserForm() {
+        const { t } = this.props;
+        const { phone, formMessage } = this.state;
+
+        return (
+            <div
+                className = 'meeting-form-container'
+                id = 'enter_user'>
+                <div className = 'enter-room-input-container'>
+                    <div className = 'enter-room-title'>
+                        {t('welcomepage.enterPhoneNumber')}
+                    </div>
+                    <form onSubmit = { this._onUserFormSubmit }>
+                        <input
+                            autoFocus = { true }
+                            className = 'enter-room-input'
+                            id = 'enter_user_field'
+                            onChange = { this._onPhoneChange }
+                            placeholder = { t('welcomepage.phonePlaceholder') }
+                            type = 'tel'
+                            value = { phone } />
+                    </form>
+                    { formMessage && <p>{formMessage}</p> }
+                </div>
+                <div
+                    className = 'welcome-page-button'
+                    id = 'enter_user_button'
+                    onClick = { this._onUserFormSubmit }>
+                    {t('welcomepage.go')}
+                </div>
+            </div>
+        );
     }
 
     /**

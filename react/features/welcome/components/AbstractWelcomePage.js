@@ -78,7 +78,9 @@ export class AbstractWelcomePage extends Component<Props, *> {
         joining: false,
         room: '',
         roomPlaceholder: '',
-        updateTimeoutId: undefined
+        updateTimeoutId: undefined,
+        phone: '',
+        formMessage: ''
     };
 
     /**
@@ -96,6 +98,7 @@ export class AbstractWelcomePage extends Component<Props, *> {
         this._onJoin = this._onJoin.bind(this);
         this._onRoomChange = this._onRoomChange.bind(this);
         this._updateRoomname = this._updateRoomname.bind(this);
+        this._onPhoneChange = this._onPhoneChange.bind(this);
     }
 
     /**
@@ -228,6 +231,20 @@ export class AbstractWelcomePage extends Component<Props, *> {
             },
             () => this._animateRoomnameChanging(generatedRoomname));
     }
+
+    _onPhoneChange: (string) => void;
+
+    /**
+    * Handles 'change' event for the phone input field.
+    *
+    * @param {string} value - The text typed into the respective text input
+    * field.
+    * @protected
+    * @returns {void}
+    */
+    _onPhoneChange(value) {
+        this.setState({ phone: value });
+    }
 }
 
 /**
@@ -247,6 +264,7 @@ export function _mapStateToProps(state: Object) {
         _calendarEnabled: isCalendarEnabled(state),
         _recentListEnabled: isRecentListEnabled(),
         _room: state['features/base/conference'].room,
-        _settings: state['features/base/settings']
+        _settings: state['features/base/settings'],
+        _user: state['features/base/user']
     };
 }
